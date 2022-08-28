@@ -3,7 +3,8 @@
 	top: 0;
 	width: 100%;
 	z-index: 10 !important;
-	background: color-bg(header);
+	background-color: rgba(136, 134, 146, 0.123);
+	// background: color-bg(header);
 
 	+ .site-content {
 
@@ -47,7 +48,7 @@
     li {
 
 		+ .header-button {
-			margin-left: $header-nav--padding-h;
+				margin-left: $header-nav--padding-h;
 		}
     }
 

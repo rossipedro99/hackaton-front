@@ -41,11 +41,7 @@ const Footer = ({
           )}>
           <div className="footer-top space-between text-xxs">
             <Logo />
-            <FooterSocial />
-          </div>
-          <div className="footer-bottom space-between text-xxs invert-order-desktop">
-            <FooterNav />
-            <div className="footer-copyright">Made by <a href="https://cruip.com">Cruip</a>. All right reserved</div>
+            <p>© 2022 BTG Pactual Av. Brigadeiro Faria Lima, 3.477 São Paulo – SP - Brasil Telefone: +55 11 3383 2000</p>
           </div>
         </div>
       </div>

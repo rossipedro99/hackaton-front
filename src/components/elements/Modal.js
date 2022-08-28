@@ -1,117 +1,35 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from "react";
+import {Link} from 'react-router-dom'
+import { useState } from 'react';
+import styles from '../../assets/scss/core/elements/_modal.scss'
+import main from './main'
+import {useHistory } from 'react-router-dom';
+// const [openPage, setOpenPage] = useState(false);
 
-const propTypes = {
-  children: PropTypes.node,
-  handleClose: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
-  closeHidden: PropTypes.bool,
-  video: PropTypes.string,
-  videoTag: PropTypes.oneOf(['iframe', 'video'])
-}
 
-const defaultProps = {
-  children: null,
-  show: false,
-  closeHidden: false,
-  video: '',
-  videoTag: 'iframe'
-}
+function Modal({closeModal}){
+  const history = useHistory();
 
-const Modal = ({
-  className,
-  children,
-  handleClose,
-  show,
-  closeHidden,
-  video,
-  videoTag,
-  ...props
-}) => {
-
-  useEffect(() => {
-    document.addEventListener('keydown', keyPress);
-    document.addEventListener('click', stopProgagation);
-    return () => {
-      document.removeEventListener('keydown', keyPress);
-      document.removeEventListener('click', stopProgagation);
-    };    
-  });
-
-  useEffect(() => {
-    handleBodyClass();
-  }, [props.show]); 
-  
-  const handleBodyClass = () => {
-    if (document.querySelectorAll('.modal.is-active').length) {
-      document.body.classList.add('modal-is-active');
-    } else {
-      document.body.classList.remove('modal-is-active');
-    }
+  const gotoMain = () =>{
+    history.push('./main')
   }
 
-  const keyPress = (e) => {
-    e.keyCode === 27 && handleClose(e);
-  }
-
-  const stopProgagation = (e) => {
-    e.stopPropagation();
-  }
-
-  const classes = classNames(
-    'modal',
-    show && 'is-active',
-    video && 'modal-video',
-    className
-  );
-
-  return (
-    <>
-      {show &&
-        <div
-          {...props}
-          className={classes}
-          onClick={handleClose}
-        >
-          <div className="modal-inner" onClick={stopProgagation}>
-            {video ?
-              <div className="responsive-video">
-                {videoTag === 'iframe' ?
-                  <iframe
-                    title="video"
-                    src={video}
-                    frameBorder="0"
-                    allowFullScreen
-                  ></iframe> :
-                  <video
-                    v-else
-                    controls
-                    src={video}
-                  ></video>
-                }
-              </div> :
-              <>
-                {!closeHidden &&
-                  <button
-                    className="modal-close"
-                    aria-label="close"
-                    onClick={handleClose}
-                  ></button>
-                }
-                <div className="modal-content">
-                  {children}
-                </div>
-              </>
-            }
-          </div>
-        </div>
-      }
-    </>
+  return(
+    <center>
+    <div className="modal-login-box">
+      <div className="modal-login-container">
+        <button className="modal-login-close" onClick={() => closeModal(false)}> X </button>
+        <h1 className="title">Sign in</h1>
+        <p>Login</p>
+        <input placeholder="E-mail"></input>
+        <p>Senha</p>
+        <input placeholder="Senha"></input>
+        <button className="modal-login-enter" onClick={gotoMain} >Entrar</button>
+      </div>
+    </div>
+    </center>
   )
 }
 
-Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
 
-export default Modal;
+export default Modal

@@ -1,5 +1,11 @@
 .features-tiles-item-image {
 	display: inline-flex;
+	padding: 10px;
 	border-radius: 50%;
-	background-color: get-color(primary, 3);
+	background-color: #1B2457;
+}
+
+.button-download{
+	background-color: rgba(255, 0, 0, 0);
+	border-style: none;
 }

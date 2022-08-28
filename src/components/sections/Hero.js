@@ -5,6 +5,8 @@ import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
 import Image from '../elements/Image';
 import Modal from '../elements/Modal';
+import main from '../elements/main';
+// import {Route, Link, Router} from 'react-router-dom'
 
 const propTypes = {
   ...SectionProps.types
@@ -25,17 +27,7 @@ const Hero = ({
   ...props
 }) => {
 
-  const [videoModalActive, setVideomodalactive] = useState(false);
-
-  const openModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(true);
-  }
-
-  const closeModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(false);
-  }   
+  const [openModal, setOpenModal] = useState(false);
 
   const outerClasses = classNames(
     'hero section center-content',
@@ -52,6 +44,8 @@ const Hero = ({
     bottomDivider && 'has-bottom-divider'
   );
 
+
+
   return (
     <section
       {...props}
@@ -60,46 +54,29 @@ const Hero = ({
       <div className="container-sm">
         <div className={innerClasses}>
           <div className="hero-content">
+            <center><div class= "logo-web-3"></div></center>
             <h1 className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="200">
-              Landing template for <span className="text-color-primary">startups</span>
+              <center><div class="logo-web"><Image
+            src={require('./../../assets/images/btglogo2.png')}
+            alt="Open"
+            width={128}
+            height={128} /></div></center>
+              <h1 class= 'title-web-3'><span class='one'>w</span><span class='two'>e</span><span class='three'>b</span><span class='four'>3</span><span class='five'>.</span><span class='six'>0</span></h1>
             </h1>
             <div className="container-xs">
-              <p className="m-0 mb-32 reveal-from-bottom" data-reveal-delay="400">
-                Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.
+              <p className="m-0 mb-32 reveal-from-bottom subtitle" data-reveal-delay="100">
+                s e g u r o s & p r e v i d ê n c i a
                 </p>
-              <div className="reveal-from-bottom" data-reveal-delay="600">
+              <div className="reveal-from-bottom" data-reveal-delay="300">
                 <ButtonGroup>
-                  <Button tag="a" color="primary" wideMobile href="https://cruip.com/">
-                    Get started
-                    </Button>
-                  <Button tag="a" color="dark" wideMobile href="https://github.com/cruip/open-react-template/">
-                    View on Github
-                    </Button>
+                  <button className = "openModalBtn" onClick={() => {setOpenModal(true);}} >Começar</button>
+                    {openModal && <Modal closeModal={setOpenModal}/>}
                 </ButtonGroup>
+                {/* <Router exact path='/main' component={main}></Router> */}
               </div>
+              <h1>Consulta de apólices.</h1>
             </div>
           </div>
-          <div className="hero-figure reveal-from-bottom illustration-element-01" data-reveal-value="20px" data-reveal-delay="800">
-            <a
-              data-video="https://player.vimeo.com/video/174002812"
-              href="#0"
-              aria-controls="video-modal"
-              onClick={openModal}
-            >
-              <Image
-                className="has-shadow"
-                src={require('./../../assets/images/video-placeholder.jpg')}
-                alt="Hero"
-                width={896}
-                height={504} />
-            </a>
-          </div>
-          <Modal
-            id="video-modal"
-            show={videoModalActive}
-            handleClose={closeModal}
-            video="https://player.vimeo.com/video/174002812"
-            videoTag="iframe" />
         </div>
       </div>
     </section>
